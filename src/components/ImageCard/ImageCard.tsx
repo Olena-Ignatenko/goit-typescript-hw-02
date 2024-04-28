@@ -1,6 +1,21 @@
 import css from "./ImageCard.module.css";
 
-const ImageCard = ({ image, openModal }) => {
+
+interface Image {
+  id: string;
+  urls: {
+    small: string;
+    regular?: string; 
+  };
+  alt_description: string;
+}
+
+interface ImageCardProps {
+  image: Image;
+  openModal: (image: Image) => void;
+}
+
+const ImageCard: React.FC<ImageCardProps> = ({ image, openModal }) => {
   return (
     <div className={css.galleryItem} onClick={() => openModal(image)}>
       <img
@@ -8,9 +23,11 @@ const ImageCard = ({ image, openModal }) => {
         src={image.urls.small}
         alt={image.alt_description}
       />
-      
     </div>
   );
 };
 
 export default ImageCard;
+
+
+

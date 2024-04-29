@@ -1,14 +1,7 @@
+import { Image } from "../App/App.types";
 import css from "./ImageCard.module.css";
 
 
-interface Image {
-  id: string;
-  urls: {
-    small: string;
-    regular?: string; 
-  };
-  alt_description: string;
-}
 
 interface ImageCardProps {
   image: Image;

@@ -24,13 +24,17 @@ interface SmallImage {
 }
 
 const ImageModal: React.FC<ImageModalProps> = ({ isOpen, image, onRequestClose }) => {
+  const closeModal = () => {
+    onRequestClose(); // Викликаємо функцію onRequestClose
+  };
+
   // Перевірка типу об'єкта image
   const isRegularImage = "regular" in image.urls;
   return (
     <Modal
       className={css.ReactModal__Content}
       isOpen={isOpen}
-      onRequestClose={onRequestClose}
+      onRequestClose={closeModal}
       contentLabel="Image Modal"
     >
       <img className={css.imgRegular} src={isRegularImage ? (image.urls as RegularImage['urls']).regular : (image.urls as SmallImage['urls']).small} alt={image.alt_description} />

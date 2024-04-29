@@ -100,6 +100,10 @@ const App = () => {
     }
   };
 
+  const handleRequestClose = () => {
+  closeModal(); // Викликаємо функцію closeModal, щоб закрити модальне вікно
+};
+
   // Повертаємо JSX з компонентами
   return (
     <div className="app">
@@ -115,7 +119,7 @@ const App = () => {
       {loading && <Loader />} {/* Відображаємо Loader при завантаженні */}
       {error && <ErrorMessage message={error} />}{" "}
       {/* Відображаємо ErrorMessage при помилці */}
-      <ImageGallery images={images} openModal={openModal} />
+      <ImageGallery imageList={images} openModal={openModal} />
       <LoadMoreBtn
         onLoadMore={handleLoadMore} // Передаємо функцію handleLoadMore у компонент LoadMoreBtn
         hasMore={!loading && images.length > 0 && !isSearching} // Перевірка чи є ще зображення для завантаження
@@ -124,7 +128,7 @@ const App = () => {
         <ImageModal
           isOpen={true}
           image={selectedImage}
-          onRequestClose={closeModal}
+          onRequestClose={handleRequestClose}
         />
       )}
     </div>
